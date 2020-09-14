@@ -1,0 +1,47 @@
+# -------------------------------------------------------------------------
+# This file controls default concretization preferences for Spack.
+#
+# Settings here are versioned with Spack and are intended to provide
+# sensible defaults out of the box. Spack maintainers should edit this
+# file to keep it current.
+#
+# Users can override these settings by editing the following files.
+#
+# Per-spack-instance settings (overrides defaults):
+#   $SPACK_ROOT/etc/spack/packages.yaml
+#
+# Per-user settings (overrides default and site settings):
+#   ~/.spack/packages.yaml
+# -------------------------------------------------------------------------
+packages:
+  all:
+    compiler: [gcc@8.1.0]
+    providers:
+      blas: [cray-libsci]
+      fftw-api: [fftw]
+      lapack: [cray-libsci]
+      mpi: [mpich]
+      scalapack: [cray-libsci]
+    permissions:
+      read: world
+      write: user
+  fftw:
+    externals:
+    - spec: "fftw@3.3.8.5 target=thunderx2"
+      prefix: /opt/cray/pe/fftw/3.3.8.5/arm_thunderx2
+    buildable: False
+  mpich:
+    externals:
+    - spec: "mpich@3.2 target=thunderx2"
+      modules:
+      - cray-mpich/7.7.12
+  cray-libsci:
+    externals:
+      - spec: "cray-libsci@19.06.1 target=thunderx2"
+        modules:
+        - cray-libsci/19.06.1
+  libtool:
+    externals:
+      - spec: "libtool@2.4.6"
+        prefix: /usr
+    buildable: False
