@@ -15,6 +15,7 @@
 # -------------------------------------------------------------------------
 packages:
   all:
+    target: ['thunderx2']
     compiler: [gcc@8.1.0]
     providers:
       blas: [cray-libsci]
@@ -27,21 +28,36 @@ packages:
       write: user
   fftw:
     externals:
-    - spec: "fftw@3.3.8.5 target=thunderx2"
+    - spec: "fftw@3.3.8.5~openmp arch=cray-cnl7-thunderx2"
       prefix: /opt/cray/pe/fftw/3.3.8.5/arm_thunderx2
+    - spec: "fftw@3.3.8.5+openmp arch=cray-cnl7-thunderx2"
+      prefix: /opt/cray/pe/fftw/3.3.8.5/arm_thunderx2
+ 
     buildable: False
   mpich:
     externals:
-    - spec: "mpich@3.2 target=thunderx2"
+    - spec: "mpich@3.2 arch=cray-cnl7-thunderx2"
       modules:
       - cray-mpich/7.7.12
   cray-libsci:
     externals:
-      - spec: "cray-libsci@19.06.1 target=thunderx2"
+      - spec: "cray-libsci@19.06.1 arch=cray-cnl7-thunderx2"
         modules:
         - cray-libsci/19.06.1
   libtool:
     externals:
-      - spec: "libtool@2.4.6 target=thunderx2"
+      - spec: "libtool@2.4.6 arch=cray-cnl7-thunderx2"
         prefix: /usr
     buildable: False
+  cmake:
+    externals:
+      - spec: "cmake@3.15.4 arch=cray-cnl7-thunderx2"
+        modules:
+        - tools/cmake/3.15.4
+    buildable: False
+  hwloc:
+    externals:
+      - spec: "hwloc@1.11.8 arch=cray-cnl7-thunderx2"
+        prefix: /usr
+    buildable: False
+
