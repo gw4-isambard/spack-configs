@@ -313,3 +313,18 @@ compilers:
     modules: []
     environment: {}
     extra_rpaths: []
+- compiler:
+    spec: gcc@8.1.0
+    paths:
+      cc: gcc
+      cxx: g++
+      f77: gfortran
+      fc: gfortran
+    flags: {}
+    operating_system: rhel8
+    target: any
+    modules:
+    - gcc/8.1.0
+    environment: {}
+    extra_rpaths: []
+
