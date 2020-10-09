@@ -15,24 +15,26 @@
 # -------------------------------------------------------------------------
 packages:
   all:
-    target: ['thunderx2']
     compiler: [gcc@8.1.0]
     providers:
       blas: [cray-libsci]
       fftw-api: [fftw]
       lapack: [cray-libsci]
-      mpi: [mpich]
+      mpi: [mpich, open-mpi]
       scalapack: [cray-libsci]
     permissions:
       read: world
-      write: user
+      write: group
+      group: gw4admin
   fftw:
     externals:
     - spec: "fftw@3.3.8.5~openmp arch=cray-cnl7-thunderx2"
       prefix: /opt/cray/pe/fftw/3.3.8.5/arm_thunderx2
     - spec: "fftw@3.3.8.5+openmp arch=cray-cnl7-thunderx2"
       prefix: /opt/cray/pe/fftw/3.3.8.5/arm_thunderx2
- 
+    - spec: "fftw@3.3.8.7 arch=cray-rhel8-a64fx"
+      modules:
+      - cray-fftw/3.3.8.7
     buildable: False
   mpich:
     externals:
@@ -44,9 +46,14 @@ packages:
       - spec: "cray-libsci@19.06.1 arch=cray-cnl7-thunderx2"
         modules:
         - cray-libsci/19.06.1
+      - spec: "cray-libsci@20.09.1 arch=cray-rhel8-a64fx"
+        modules:
+        - cray-libsci/20.09.1
   libtool:
     externals:
       - spec: "libtool@2.4.6 arch=cray-cnl7-thunderx2"
+        prefix: /usr
+      - spec: "libtool@2.4.6 arch=cray-rhel8-a64fx"
         prefix: /usr
     buildable: False
   cmake:
@@ -55,9 +62,59 @@ packages:
         modules:
         - tools/cmake/3.15.4
     buildable: False
+  numactl:
+    externals:
+      - spec: "numactl@2.0.12 arch=cray-rhel8-a64fx"
+        prefix: /usr
+    buildable: False
   hwloc:
     externals:
       - spec: "hwloc@1.11.8 arch=cray-cnl7-thunderx2"
         prefix: /usr
+        # - spec: "hwloc@1.11 arch=cray-rhel8-a64fx"
+        #prefix: /usr
+  pkgconf:
+    externals:
+      - spec: "pkgconf@1.4.2 arch=cray-rhel8-a64fx"
+        prefix: /usr
     buildable: False
-
+  zlib:
+    externals:
+      - spec: "zlib@1.2.11 arch=cray-rhel8-a64fx"
+        prefix: /usr
+    buildable: False
+  autoconf:
+    externals:
+      - spec: "autoconf@2.69 arch=cray-rhel8-a64fx"
+        prefix: /usr
+    buildable: False
+  automake:
+    externals:
+      - spec: "automake@1.16.1 arch=cray-rhel8-a64fx"
+        prefix: /usr
+    buildable: False
+  findutils:
+    externals:
+      - spec: "findutils@4.6.0 arch=cray-rhel8-a64fx"
+        prefix: /usr
+    buildable: False
+  m4:
+    externals:
+      - spec: "m4@1.4.18 arch=cray-rhel8-a64fx"
+        prefix: /usr
+    buildable: False
+  rdma-core:
+    externals:
+      - spec: "rdma-core@26.0 arch=cray-rhel8-a64fx"
+        prefix: /usr
+    buildable: False
+  openpbs:
+    externals:
+      - spec: "openpbs arch=cray-rhel8-a64fx"
+        prefix: /opt/pbs
+    buildable: False
+  pkg-config:
+    externals:
+      - spec: "pkg-config arch=cray-rhel8-a64fx"
+        prefix: /usr
+    buildable: False
