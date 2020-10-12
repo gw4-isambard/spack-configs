@@ -327,4 +327,20 @@ compilers:
     - gcc/8.1.0
     environment: {}
     extra_rpaths: []
+- compiler:
+    spec: cce@10.0.3
+    paths:
+      cc: cc
+      cxx: CC
+      f77: ftn
+      fc: ftn
+    flags: {}
+    operating_system: rhel8
+    target: any
+    modules:
+    - PrgEnv-cray
+    - cce-sve/10.0.1
+    - craype-arm-nsp1
+    environment: {}
+    extra_rpaths: []
 

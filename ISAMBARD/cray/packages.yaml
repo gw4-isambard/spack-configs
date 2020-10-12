@@ -15,13 +15,13 @@
 # -------------------------------------------------------------------------
 packages:
   all:
-    compiler: [gcc@8.1.0]
+    compiler: [gcc@8.1.0, cce@10.0.3]
     providers:
-      blas: [cray-libsci]
+      blas: [cray-libsci, netlib-lapack]
       fftw-api: [fftw]
-      lapack: [cray-libsci]
-      mpi: [mpich, open-mpi]
-      scalapack: [cray-libsci]
+      lapack: [cray-libsci, netlib-lapack]
+      mpi: [mpich, open-mpi, mvapich2]
+      scalapack: [cray-libsci, netlib-scalalapack]
     permissions:
       read: world
       write: group
@@ -41,6 +41,11 @@ packages:
     - spec: "mpich@3.2 arch=cray-cnl7-thunderx2"
       modules:
       - cray-mpich/7.7.12
+  mvapich2:
+    externals:
+    - spec: "mvapich2@2.3.4 arch=cray-rhel8-a64fx"
+      modules:
+      - cray-mvapich2_noslurm_nogpu/2.3.4
   cray-libsci:
     externals:
       - spec: "cray-libsci@19.06.1 arch=cray-cnl7-thunderx2"
@@ -116,5 +121,14 @@ packages:
   pkg-config:
     externals:
       - spec: "pkg-config arch=cray-rhel8-a64fx"
+        prefix: /usr
+    buildable: False
+  bison:
+    externals:
+      - spec: "bison arch=cray-rhel8-a64fx"
+        prefix: /usr
+  libxml2:
+    externals:
+      - spec: "libxml2@2.9.7 arch=cra-rhel8-a64fx"
         prefix: /usr
     buildable: False
