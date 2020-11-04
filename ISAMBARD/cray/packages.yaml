@@ -15,7 +15,7 @@
 # -------------------------------------------------------------------------
 packages:
   all:
-    compiler: [gcc@8.1.0, cce@10.0.3]
+    compiler: [gcc@8.1.0, gcc@8.3.1, gcc@10.2.0, cce@10.0.3, clang@11.0.0]
     providers:
       blas: [cray-libsci, netlib-lapack]
       fftw-api: [fftw]
@@ -32,10 +32,10 @@ packages:
       prefix: /opt/cray/pe/fftw/3.3.8.5/arm_thunderx2
     - spec: "fftw@3.3.8.5+openmp arch=cray-cnl7-thunderx2"
       prefix: /opt/cray/pe/fftw/3.3.8.5/arm_thunderx2
-    - spec: "fftw@3.3.8.7 arch=cray-rhel8-a64fx"
-      modules:
-      - cray-fftw/3.3.8.7
-    buildable: False
+      #    - spec: "fftw@3.3.8.7 arch=cray-rhel8-a64fx"
+      #modules:
+      #- cray-fftw/3.3.8.7
+      #buildable: False
   mpich:
     externals:
     - spec: "mpich@3.2 arch=cray-cnl7-thunderx2"
@@ -43,7 +43,7 @@ packages:
       - cray-mpich/7.7.12
   mvapich2:
     externals:
-    - spec: "mvapich2@2.3.4 arch=cray-rhel8-a64fx"
+    - spec: "mvapich2@2.3.4%cce arch=cray-rhel8-a64fx"
       modules:
       - cray-mvapich2_noslurm_nogpu/2.3.4
   cray-libsci:
@@ -129,6 +129,29 @@ packages:
         prefix: /usr
   libxml2:
     externals:
-      - spec: "libxml2@2.9.7 arch=cra-rhel8-a64fx"
+      - spec: "libxml2@2.9.7 arch=cray-rhel8-a64fx"
         prefix: /usr
     buildable: False
+  flex:
+    externals:
+      - spec: "flex arch=cray-rhel8-a64fx"
+        prefix: /usr
+  python:
+    externals:
+      - spec: "python@3.6.8 arch=cray-rhel8-a64fx"
+        prefix: /usr
+        # Commented out due to gold features in binutils used by LLVM.
+        #binutils:
+        #externals:
+        #- spec: "binutils@2.30 arch=cray-rhel8-a64fx"
+        #prefix: /usr
+        # Error due to -lintl not found in redhat install.
+        #gettext:
+        #externals:
+        #- spec: "gettext@0.19.8.1 arch=cray-rhel8-a64fx"
+        #prefix: /usr
+  diffutils:
+    externals:
+      - spec: "diffutils@3.6 arch=cray-rhel8-a64fx"
+        prefix: /usr
+

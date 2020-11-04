@@ -343,4 +343,34 @@ compilers:
     - craype-arm-nsp1
     environment: {}
     extra_rpaths: []
-
+- compiler:
+    spec: gcc@8.3.1
+    modules: []
+    operating_system: rhel8
+    paths:
+      cc: /usr/bin/gcc
+      cxx: /usr/bin/g++
+      f77: None
+      fc: None
+    target: any
+compilers:
+- compiler:
+    modules: []
+    operating_system: rhel8
+    paths:
+      cc: /home/ca-tgreen/Work/git/spack/opt/spack/cray-rhel8-a64fx/gcc-8.1.0/gcc-10.2.0-s34jlthr44cq47mv2to5djwkzkq5unez/bin/gcc
+      cxx: /home/ca-tgreen/Work/git/spack/opt/spack/cray-rhel8-a64fx/gcc-8.1.0/gcc-10.2.0-s34jlthr44cq47mv2to5djwkzkq5unez/bin/g++
+      f77: /home/ca-tgreen/Work/git/spack/opt/spack/cray-rhel8-a64fx/gcc-8.1.0/gcc-10.2.0-s34jlthr44cq47mv2to5djwkzkq5unez/bin/gfortran
+      fc: /home/ca-tgreen/Work/git/spack/opt/spack/cray-rhel8-a64fx/gcc-8.1.0/gcc-10.2.0-s34jlthr44cq47mv2to5djwkzkq5unez/bin/gfortran
+    spec: gcc@10.2.0
+    target: any
+- compiler:
+    modules: []
+    operating_system: rhel8
+    paths:
+      cc: /lustre/projects/cardiff/spack/opt/spack/cray-rhel8-a64fx/gcc-8.1.0/llvm-11.0.0-apvek4jnwjquchaafsoypnyhxx54sylc/bin/clang
+      cxx: /lustre/projects/cardiff/spack/opt/spack/cray-rhel8-a64fx/gcc-8.1.0/llvm-11.0.0-apvek4jnwjquchaafsoypnyhxx54sylc/bin/clang++
+      f77: /lustre/projects/cardiff/spack/opt/spack/cray-rhel8-a64fx/gcc-8.1.0/llvm-11.0.0-apvek4jnwjquchaafsoypnyhxx54sylc/bin/flang
+      fc: /lustre/projects/cardiff/spack/opt/spack/cray-rhel8-a64fx/gcc-8.1.0/llvm-11.0.0-apvek4jnwjquchaafsoypnyhxx54sylc/bin/flang
+    spec: clang@11.0.0
+    target: any
